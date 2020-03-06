@@ -5,7 +5,6 @@
   "main": "dist/index.ts",
   "author": "Syler",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "prepack": "jest && del ./dist && npm run build && suf",
     "build": "tsc -b",
