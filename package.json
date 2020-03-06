@@ -1,0 +1,52 @@
+{
+  "name": "haml-formatter",
+  "version": "0.0.1",
+  "description": "formatter for haml",
+  "main": "dist/index.ts",
+  "author": "Syler",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prepack": "jest && del ./dist && npm run build && suf",
+    "build": "tsc -b",
+    "watch": "tsc -w",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "del-cli": "^3.0.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "suf-cli": "^0.1.0",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.6.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx",
+      "node"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/logger.ts",
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}
