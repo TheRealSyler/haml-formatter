@@ -57,8 +57,8 @@ const result = FormatHaml(
 
 ```typescript
 interface Options {
-  tabSize: number;
-  insertSpaces: boolean;
+    tabSize: number;
+    insertSpaces: boolean;
 }
 ```
 
