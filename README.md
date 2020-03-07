@@ -57,15 +57,15 @@ const result = FormatHaml(
 
 ```typescript
 interface Options {
-  tabSize: number;
-  insertSpaces: boolean;
+    tabSize: number;
+    insertSpaces: boolean;
 }
 ```
 
 ##### FormatHaml
 
 ```typescript
-function FormatHaml(text: string, options: Partial<Options>): string;
+function FormatHaml(text: string, options?: Partial<Options>): string;
 ```
 
 _Generated with_ **[suf-cli](https://www.npmjs.com/package/suf-cli)**
