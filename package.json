@@ -12,6 +12,10 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheRealSyler/haml-formatter"
+  },
   "files": [
     "dist",
     "README.md"
