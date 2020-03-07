@@ -2,10 +2,12 @@ import { isWhitespaceOrEmpty } from './regex';
 import { State } from './state';
 import {
   getDistance,
-  getLineOffset,
   replaceWithOffset,
   newline,
-  replaceSpacesOrTabs
+  replaceSpacesOrTabs,
+  getIsMultiLineCode,
+  getOffset,
+  canSetIndentation
 } from './utils';
 
 export interface Options {
@@ -18,32 +20,35 @@ const defaultOptions: Options = {
   tabSize: 2
 };
 
-export function FormatHaml(text: string, options: Partial<Options>) {
+export function FormatHaml(text: string, options?: Partial<Options>) {
   const OPTIONS = { ...defaultOptions, ...options };
   let result = '';
   const lines = text.split('\n');
   const STATE = new State();
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    let addNewline = true;
+    let canAddNewline = true;
 
     if (isWhitespaceOrEmpty(line)) {
       result += '';
       if (isWhitespaceOrEmpty(lines[i - 1])) {
-        addNewline = false;
+        canAddNewline = false;
       }
     } else {
       const distance = getDistance(line, OPTIONS.tabSize);
-      const offset = getLineOffset(distance, STATE.indentation, OPTIONS.tabSize);
+      const offset = getOffset(STATE, OPTIONS, distance);
 
       result += replaceSpacesOrTabs(
         replaceWithOffset(line.replace(/[\t ]*$/, ''), offset, OPTIONS.tabSize),
         OPTIONS.tabSize,
         OPTIONS.insertSpaces
       );
-      STATE.indentation = distance + offset;
+      if (canSetIndentation(STATE, line)) {
+        STATE.indentation = distance + offset;
+      }
+      STATE.isMultilineCode = getIsMultiLineCode(STATE.isMultilineCode, line);
     }
-    result += newline(addNewline);
+    result += newline(canAddNewline);
   }
 
   return result.replace(/\n\n?$/, '\n');

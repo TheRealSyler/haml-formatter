@@ -1,3 +1,13 @@
+import {
+  isMultiLineCodeBody,
+  isMultiLineCodeStart,
+  isElement,
+  isEvalCode,
+  isExecuteCode,
+  isFilterOrProperty
+} from './regex';
+import { State } from './state';
+
 export function newline(add: boolean) {
   return add ? '\n' : '';
 }
@@ -50,4 +60,26 @@ export function replaceWithOffset(text: string, offset: number, tabSize: number)
     text = text.replace(/^/, ' '.repeat(offset));
   }
   return text;
+}
+
+export function getIsMultiLineCode(isMultilineCode: boolean, line: string): boolean {
+  return isMultilineCode ? isMultiLineCodeBody(line) : isMultiLineCodeStart(line);
+}
+
+export function getOffset(
+  STATE: State,
+  OPTIONS: { tabSize: number; insertSpaces: boolean } | { tabSize: number; insertSpaces: boolean },
+  distance: number
+) {
+  if (STATE.isMultilineCode) {
+    return STATE.indentation + OPTIONS.tabSize - distance;
+  }
+  return getLineOffset(distance, STATE.indentation, OPTIONS.tabSize);
+}
+
+export function canSetIndentation(STATE: State, line: string) {
+  return (
+    !STATE.isMultilineCode &&
+    (isElement(line) || isEvalCode(line) || isExecuteCode(line) || isFilterOrProperty(line))
+  );
 }
