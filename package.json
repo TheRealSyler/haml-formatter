@@ -1,8 +1,8 @@
 {
   "name": "haml-formatter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "formatter for haml",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "author": "Syler",
   "license": "MIT",
   "scripts": {
