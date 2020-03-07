@@ -1,4 +1,4 @@
-### Sass Formatter
+### Haml Formatter
 
 <span id="BADGE_GENERATION_MARKER_0"></span>
 [![Custom](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest) [![Custom](https://codecov.io/gh/TheRealSyler/haml-formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/TheRealSyler/haml-formatter) [![circleci](https://img.shields.io/circleci/build/github/TheRealSyler/haml-formatter)](https://app.circleci.com/github/TheRealSyler/haml-formatter/pipelines) [![npmV](https://img.shields.io/npm/v/haml-formatter?color=green)](https://www.npmjs.com/package/haml-formatter) [![min](https://img.shields.io/bundlephobia/min/haml-formatter)](https://bundlephobia.com/result?p=haml-formatter) [![install](https://badgen.net/packagephobia/install/haml-formatter)](https://packagephobia.now.sh/result?p=haml-formatter) [![githubLastCommit](https://img.shields.io/github/last-commit/TheRealSyler/haml-formatter)](https://github.com/TheRealSyler/haml-formatter)
@@ -57,8 +57,8 @@ const result = FormatHaml(
 
 ```typescript
 interface Options {
-    tabSize: number;
-    insertSpaces: boolean;
+  tabSize: number;
+  insertSpaces: boolean;
 }
 ```
 
